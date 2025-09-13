@@ -42,7 +42,7 @@ const BaggageChecker = () => {
     document.title = 'مدقق الأمتعة | فحص سياسات أمتعة أكثر من 100 شركة طيران';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'أداة مجانية شاملة للتحقق من سياسات أمتعة شركات الطيران. احسب نتيجة حقيبتك واحصل على توصيات ذكية قبل السفر.');
+      metaDescription.setAttribute('content', 'أداة مجانية شاملة للتحقق من سياسات أمتعة شركات الطيران. احسب نتيجة حقيبة اليد واحصل على توصيات ذكية قبل السفر.');
     }
   }, [searchParams]);
 
@@ -110,7 +110,7 @@ const BaggageChecker = () => {
       category = 'حقيبة يد';
       status = 'مقبولة';
       score = 95;
-      recommendations.push('حقيبتك مناسبة كحقيبة يد');
+      recommendations.push('حقيبة اليد مناسبة كحقيبة يد');
     } else {
       const checkedFits = dimensions.every((dim, index) => dim <= (checkedLimits[index] || 200)) && totalWeight <= checkedWeight;
       
@@ -118,7 +118,7 @@ const BaggageChecker = () => {
         category = 'أمتعة مسجلة';
         status = 'مقبولة';
         score = 85;
-        recommendations.push('حقيبتك تحتاج إلى تسجيل كأمتعة مسجلة');
+        recommendations.push('حقيبة اليد تحتاج إلى تسجيل كحقائب شحن');
       } else {
         category = 'غير مقبولة';
         status = 'مرفوضة';
@@ -304,7 +304,7 @@ const BaggageChecker = () => {
                     </div>
                     <div className="text-sm text-gray-600">
                       <p>حقيبة اليد: {airline.carryOnWeight} كجم</p>
-                      <p>الأمتعة المسجلة: {airline.checkedWeight} كجم</p>
+                      <p>حقائب الشحن: {airline.checkedWeight} كجم</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -351,7 +351,7 @@ const BaggageChecker = () => {
                 </div>
               </BaggageInfoCard>
 
-              <BaggageInfoCard title="الأمتعة المسجلة" icon={Package}>
+              <BaggageInfoCard title="حقائب الشحن" icon={Package}>
                 <div className="space-y-1">
                   <InfoItem 
                     label="الوزن المسموح" 
@@ -371,7 +371,7 @@ const BaggageChecker = () => {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3 space-x-reverse">
                   <Ruler className="w-6 h-6 text-green-600" />
-                  <span itemProp="name">فحص أبعاد حقيبتك</span>
+                  <span itemProp="name">فحص أبعاد حقيبة اليد</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -456,7 +456,7 @@ const BaggageChecker = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">أبعاد حقيبتك</h4>
+                      <h4 className="font-semibold text-gray-900 mb-3">أبعاد حقيبة اليد</h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">الأبعاد:</span>
@@ -481,11 +481,11 @@ const BaggageChecker = () => {
                           <span className="font-medium">{baggageScore.details.carryOnWeight}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">الأمتعة المسجلة:</span>
+                          <span className="text-gray-600">حقائب الشحن:</span>
                           <span className="font-medium">{baggageScore.details.checkedLimits}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">وزن الأمتعة المسجلة:</span>
+                          <span className="text-gray-600">وزن حقائب الشحن:</span>
                           <span className="font-medium">{baggageScore.details.checkedWeight}</span>
                         </div>
                       </div>
@@ -514,7 +514,7 @@ const BaggageChecker = () => {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3 space-x-reverse">
                   <Ruler className="w-6 h-6 text-green-600" />
-                  <span>فحص أبعاد الأمتعة المسجلة</span>
+                  <span>فحص أبعاد حقائب الشحن</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -566,7 +566,7 @@ const BaggageChecker = () => {
                     disabled={!checkedBaggageDimensions.length || !checkedBaggageDimensions.width || !checkedBaggageDimensions.height || !checkedBaggageDimensions.weight}
                     className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
                   >
-                    فحص الأمتعة المسجلة
+                    فحص حقائب الشحن
                   </Button>
                 </div>
               </CardContent>
@@ -581,7 +581,7 @@ const BaggageChecker = () => {
                     ) : (
                       <AlertCircle className="w-6 h-6 text-red-600" />
                     )}
-                    <span>نتيجة فحص الأمتعة المسجلة</span>
+                    <span>نتيجة فحص حقائب الشحن</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -601,7 +601,7 @@ const BaggageChecker = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">أبعاد حقيبتك</h4>
+                      <h4 className="font-semibold text-gray-900 mb-3">أبعاد حقائب الشحن</h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">الأبعاد:</span>
